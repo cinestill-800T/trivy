@@ -1,0 +1,55 @@
+# Trivy設定ファイル
+# AWS + Terraform向けの設定
+
+# スキャン対象の形式
+format: table
+# 出力形式（table, json, sarifなど）
+output: table
+
+# スキャンタイプ
+scanners:
+  - misconfig
+  - secret
+
+# セキュリティチェックの設定
+security-checks:
+  - config
+
+# スキャン対象のファイルタイプ
+file-patterns:
+  - "*.tf"
+  - "*.tfvars"
+  - "*.tf.json"
+
+# カスタムルールのパス
+custom-policies:
+  - ./custom-rules/
+
+# 除外設定ファイル
+ignorefile: .trivyignore
+
+# 深刻度レベル（CRITICAL, HIGH, MEDIUM, UNKNOWN）
+severity:
+  - CRITICAL
+  - HIGH
+  - MEDIUM
+
+# タイムアウト設定（秒）
+timeout: 10m
+
+# 並列スキャン数
+parallel: 5
+
+# キャッシュの使用
+cache-dir: .trivy-cache
+
+# AWS関連の設定
+aws:
+  # AWSプロファイル（オプション）
+  # profile: default
+  # AWSリージョン（オプション）
+  # region: ap-northeast-1
+
+# レポート出力（オプション）
+# report: trivy-report.json
+
